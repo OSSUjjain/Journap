@@ -1,181 +1,49 @@
-"use client"
+// src/components/app-sidebar.tsx
 
-import * as React from "react"
+"use client";
+
 import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
   LifeBuoy,
   LogOutIcon,
-  Map,
-  PieChart,
   Send,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { Button } from "./ui/button"
-import { UpgradeCard } from "./dashboard/upgradeCard"
-
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
-}
+import { Sidebar, SidebarContent, SidebarFooter } from "@/components/ui/sidebar";
+import { Button } from "./ui/button";
+import { UpgradeCard } from "./dashboard/upgradeCard"; // Assuming you have moved this here
+import { NavUser } from "./nav-user";
+import { NavJournap } from "./nav-journap";
+import { NavVortexAi } from "./nav-vortex-ai";
+import { NavSecondary } from "./nav-secondary";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  // Replace the old data object with your new structure if needed
+  const userData = {
+    name: "Username605",
+    email: "user12345@gmail.com",
+    avatar: "/avatars/user.jpg",
+  };
+
+  const secondaryNavItems = [
+    { title: "Support", url: "#", icon: LifeBuoy }, // Replace with your actual icons
+    { title: "Feedback", url: "#", icon: Send },
+  ];
+
   return (
     <Sidebar variant="inset" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <NavUser user={data.user} />
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
+      <NavUser user={userData} />
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavJournap />
+        <NavVortexAi />
+        <NavSecondary items={secondaryNavItems} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter className="mt-auto p-4">
         <UpgradeCard />
-        <Button variant={"secondary"}><LogOutIcon/>Logout</Button>
+        <Button variant={"secondary"} className="w-full mt-4">
+          <LogOutIcon className="mr-2 h-4 w-4" />
+          Logout
+        </Button>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

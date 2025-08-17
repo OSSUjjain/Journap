@@ -120,3 +120,54 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* src/app/globals.css */
+
+.nav-active-border {
+  position: relative;
+  border-radius: 0.75rem; /* Matches your button's rounded-xl class */
+}
+
+.nav-active-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid theme("colors.gray.300"); /* Border color */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 50%,
+    white 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 50%,
+    white 100%
+  );
+}
+
+.nav-active-border:hover::after,
+.nav-active-border.active::after {
+  border-color: theme("colors.gray.400"); /* Hover/active border color */
+}
+
+.nav-active-border.active::after {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 30%,
+    white 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 30%,
+    white 100%
+  );
+}
